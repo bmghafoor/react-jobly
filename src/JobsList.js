@@ -24,7 +24,9 @@ const JobsList = ({ jobList }) => {
             <CardBody>
               <CardTitle tag="h5">{job.companyName}</CardTitle>
               <CardText>{job.title}</CardText>
-              <CardSubtitle>Salary: ${job.salary}</CardSubtitle>
+              {job.salary ? (
+                <CardSubtitle>Salary: ${job.salary}</CardSubtitle>
+              ) : null}
               {job.equity > 0 ? (
                 <CardSubtitle>Equity: {decToPer(job.equity)}</CardSubtitle>
               ) : null}
