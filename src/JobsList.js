@@ -1,25 +1,35 @@
 import React from "react";
-import { Card, CardBody, CardText, CardTitle } from "reactstrap";
+import { Card, CardBody, CardSubtitle, CardText, CardTitle } from "reactstrap";
 
-const JobsList = () => {
+function decToPer(dec) {}
+
+const JobsList = ({ jobList }) => {
   return (
-    <div>
+    <>
       <h3>Here are the Jobs</h3>
-      <Card
-        style={{
-          width: "20%",
-          margin: "10px",
-          border: "1px solid black",
-          padding: "5px",
-        }}
-      >
-        <CardBody>
-          <CardTitle tag="h5">Company Name</CardTitle>
-          <CardText>Job Title</CardText>
-          <button>More Info</button>
-        </CardBody>
-      </Card>
-    </div>
+      <div style={{ display: "flex", flexWrap: "wrap" }}>
+        {jobList.map((job) => (
+          <Card
+            style={{
+              width: "20%",
+              margin: "10px",
+              border: "1px solid black",
+              padding: "5px",
+            }}
+          >
+            <CardBody>
+              <CardTitle tag="h5">{job.companyName}</CardTitle>
+              <CardText>{job.title}</CardText>
+              <CardSubtitle>Salary: ${job.salary}</CardSubtitle>
+              {job.equity > 0 ? (
+                <CardSubtitle>Equity: {job.equity}</CardSubtitle>
+              ) : null}
+              <button>Apply</button>
+            </CardBody>
+          </Card>
+        ))}
+      </div>
+    </>
   );
 };
 
