@@ -1,0 +1,32 @@
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+input {
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.btn {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: green;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  font-size: larger;
+}
+
+.textArea {
+  border: 2px solid #ccc;
+  padding-bottom: 20px;
+  border-radius: 10px;
+  margin-top: 30px;
+}

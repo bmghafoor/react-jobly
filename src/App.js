@@ -7,6 +7,8 @@ import CompaniesList from "./CompaniesList";
 import JobsList from "./JobsList";
 import JoblyApi from "./api";
 import CompanyCard from "./CompanyCard";
+import SignUpForm from "./SignUpForm";
+import LoginForm from "./LoginForm";
 
 function App() {
   const [companies, setCompanies] = useState([]);
@@ -39,6 +41,8 @@ function App() {
           />
           <Route path="/companies/:handle" element={<CompanyCard />} />
           <Route path="/jobs" element={<JobsList jobList={jobs} />} />
+          <Route path="/signup" element={<SignUpForm />} />
+          <Route path="/login" element={<LoginForm />} />
         </Routes>
       </BrowserRouter>
     </div>
