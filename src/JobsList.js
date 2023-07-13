@@ -1,7 +1,11 @@
 import React from "react";
 import { Card, CardBody, CardSubtitle, CardText, CardTitle } from "reactstrap";
 
-function decToPer(dec) {}
+function decToPer(dec) {
+  const percentage = (dec * 100).toFixed(2);
+
+  return `${percentage}%`;
+}
 
 const JobsList = ({ jobList }) => {
   return (
@@ -22,7 +26,7 @@ const JobsList = ({ jobList }) => {
               <CardText>{job.title}</CardText>
               <CardSubtitle>Salary: ${job.salary}</CardSubtitle>
               {job.equity > 0 ? (
-                <CardSubtitle>Equity: {job.equity}</CardSubtitle>
+                <CardSubtitle>Equity: {decToPer(job.equity)}</CardSubtitle>
               ) : null}
               <button>Apply</button>
             </CardBody>
