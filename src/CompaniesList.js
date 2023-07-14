@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Card, CardBody, CardText, CardTitle } from "reactstrap";
-import { NavLink } from "react-router-dom";
+import { NavLink, Navigate } from "react-router-dom";
 import "./CompaniesList.css";
+import UserContext from "./UserContext";
 
 const CompaniesList = ({ companyList }) => {
+  const { currentUser } = useContext(UserContext);
+
+  if (!currentUser) {
+    return <Navigate to="/login" />;
+  }
   return (
     <div>
       <h3>Here are the companies</h3>

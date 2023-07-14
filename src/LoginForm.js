@@ -1,16 +1,21 @@
 import React from "react";
 import useFields from "./hooks/useFields";
 import "./Form.css";
+import { useNavigate } from "react-router-dom";
 
-const LoginForm = () => {
+const LoginForm = ({ login }) => {
+  const navigate = useNavigate();
   const [formData, handleChange, resetForm] = useFields({
     username: "",
     password: "",
   });
-  const handleSubmit = (e) => {
+  async function handleSubmit(e) {
     e.preventDefault();
-    resetForm();
-  };
+    let result = await login(formData);
+    if (result.success) {
+      navigate("/");
+    }
+  }
   return (
     <form onSubmit={handleSubmit}>
       <label htmlFor="username">Username:</label>

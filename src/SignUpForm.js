@@ -1,8 +1,10 @@
 import React from "react";
 import useFields from "./hooks/useFields";
+import { useNavigate } from "react-router-dom";
 import "./Form.css";
 
-const SignUpForm = () => {
+const SignUpForm = ({ signup }) => {
+  const navigate = useNavigate();
   const [formData, handleChange, resetForm] = useFields({
     username: "",
     firstName: "",
@@ -10,10 +12,13 @@ const SignUpForm = () => {
     email: "",
     password: "",
   });
-  const handleSubmit = (e) => {
+  async function handleSubmit(e) {
     e.preventDefault();
-    resetForm();
-  };
+    let result = await signup(formData);
+    if (result.success) {
+      navigate("/");
+    }
+  }
   return (
     <form onSubmit={handleSubmit}>
       <label htmlFor="username">Username:</label>

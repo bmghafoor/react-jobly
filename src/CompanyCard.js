@@ -1,21 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import JoblyApi from "./api";
 import { Card, CardBody, CardText, CardTitle } from "reactstrap";
-import { NavLink } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import "./CompaniesList.css";
 import JobsList from "./JobsList";
+import UserContext from "./UserContext";
 
 const CompanyCard = () => {
   const [company, setCompany] = useState(null);
   const { handle } = useParams();
-
   useEffect(() => {
     async function getCompany() {
       setCompany(await JoblyApi.getCompany(handle));
     }
     getCompany();
   }, [handle]);
+  const { currentUser } = useContext(UserContext);
+
+  if (!currentUser) {
+    return <Navigate to="/login" />;
+  }
 
   // Incase data isn't ready
   if (!company) {
